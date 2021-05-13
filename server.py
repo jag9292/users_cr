@@ -30,6 +30,53 @@ def add_user():
     mysql.query_db(query, data)
     return redirect("/users")
 
+@app.route('/users/show/<id>')
+def show_user_page(id):
+    mysql = connectToMySQL('users')
+    query = "SELECT * FROM users WHERE id=%(id)s;"
+    data = {
+        "id" : int(id)
+    }
+    user = mysql.query_db(query, data)
+    return render_template('index_show.html', user = user[0])
+
+
+
+@app.route('/users/edit/<id>')
+def edit(id):
+    mysql = connectToMySQL('users')
+    query = "SELECT * FROM users WHERE id=%(id)s;"
+    data = {
+        "id" : int(id)
+    }
+    user = mysql.query_db(query, data)
+    return render_template('index_edit.html', user = user[0])
+
+@app.route("/edit/<id>", methods=["POST"])
+def update(id):
+    mysql = connectToMySQL('users')
+    query = "UPDATE users SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s WHERE id = %(id)s;"
+    data = {
+        "first_name" : request.form['fname'],
+        "last_name" : request.form['lname'],
+        "email" : request.form['email'],
+        "id" : int(id)
+    }
+    mysql.query_db(query, data)
+    return redirect(f'/users/show/{id}')
+
+
+
+@app.route('/delete/<id>')
+def delete_user(id):
+    mysql = connectToMySQL('users')
+    query = "DELETE FROM users WHERE id=%(id)s;"
+    data = {
+        "id" : int(id)
+    }
+    mysql.query_db(query, data)
+    return redirect("/users")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
