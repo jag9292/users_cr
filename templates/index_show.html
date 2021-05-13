@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 20px;
+        }
+        .box {
+            border: 2px solid black;
+            padding: 20px;
+            margin: 20px 0px;
+            width: 300px;
+        }
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .home {
+            margin: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <h1>User</h1>
+        <a class ="home" href="/users">Home</a>
+    </div>
+    <div class="box">
+        <p>ID: {{user["id"]}}</p>
+        <p>First Name: {{user["first_name"]}}</p>
+        <p>Last Name: {{user["last_name"]}}</p>
+        <p>Email: {{user["email"]}}</p>
+    </div>
+    <div class="actions">
+        <a href="/users/edit/{{user['id']}}">Edit |</a>
+        <a href="/delete/{{user['id']}}">Delete</a>
+    </div>
+</body>
+</html>

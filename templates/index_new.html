@@ -5,13 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .home {
+            margin: 40px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Add User</h1>
+    <div class="top">
+        <h1>Add User</h1>
+        <a class ="home" href="/users">Home</a>
+    </div>
     <form action='/users' method='POST'>
-        <p>First Name: <input type="text" name="fname"></p>
-        <p>Last Name: <input type="text" name="lname"></p>
-        <p>Email: <input type="text" name="email"></p>
+        <p>First Name: <br> <input type="text" name="fname"></p>
+        <p>Last Name: <br> <input type="text" name="lname"></p>
+        <p>Email: <br> <input type="text" name="email"></p>
         <input type="submit" value="Create">
     </form>
 </body>
